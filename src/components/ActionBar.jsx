@@ -4,9 +4,9 @@ import PropTypes from 'prop-types';
 function ActionBar(props){
   return (
     <div className="action">
-      <button onClick={props.handleFeedClick}>feed</button>
-      <button onClick={props.handlePlayClick}>play</button>
-      <button onClick={props.handleCleanClick}>clean</button>
+      <button onClick={props.onHandleFeedClick}>feed</button>
+      <button onClick={props.onHandlePlayClick}>play</button>
+      <button onClick={props.onHandleCleanClick}>clean</button>
       <style jsx>
         {`
           button {
@@ -25,9 +25,9 @@ function ActionBar(props){
 }
 
 ActionBar.propTypes = {
-  handleFeedClick: PropTypes.func,
-  handlePlayClick: PropTypes.func,
-  handleCleanClick: PropTypes.func
+  onHandleFeedClick: PropTypes.func,
+  onHandlePlayClick: PropTypes.func,
+  onHandleCleanClick: PropTypes.func
 };
 
 export default ActionBar;

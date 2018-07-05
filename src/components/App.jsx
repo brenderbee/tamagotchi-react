@@ -10,9 +10,9 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      masterHunger: 100,
-      masterPlay: 100,
-      masterCleanliness: 1
+      masterHunger: 70,
+      masterPlay: 50,
+      masterCleanliness: 3
     };
     this.handleFeedClick = this.handleFeedClick.bind(this);
     this.handlePlayClick = this.handlePlayClick.bind(this);
@@ -20,32 +20,44 @@ class App extends React.Component {
   }
 
   handleFeedClick() {
-    console.log('you clicked feed');
+    if (this.state.masterHunger < 91) {
+      this.setState({masterHunger: (this.state.masterHunger + 10)});
+    } else {
+      this.setState({masterHunger: 100});
+    }
   }
 
   handlePlayClick() {
-    console.log('you clicked play');
+    if (this.state.masterPlay < 91) {
+      this.setState({masterPlay: (this.state.masterPlay + 10)});
+    } else {
+      this.setState({masterPlay: 100});
+    }
   }
 
   handleCleanClick() {
-    console.log('you clicked clean');
+    if (this.state.masterCleanliness > 0) {
+      this.setState({masterCleanliness: (this.state.masterCleanliness - 1)});
+    }
   }
 
   render(){
     return (
       <div className="container">
         <StatusBar
-            hunger={this.state.masterHunger}
-            play={this.state.masterPlay}
-            cleanliness={this.state.masterCleanliness}
+          hunger={this.state.masterHunger}
+          play={this.state.masterPlay}
+          cleanliness={this.state.masterCleanliness}
         />
         <Switch>
           <Route exact path='/' component={Neutral}/>} />
           <Route component={Error404} />
         </Switch>
-        <ActionBar handleFeedClick={this.handleFeedClick}
-          handlePlayClick={this.handlePlayClick}
-          handleCleanClick={this.handleCleanClick}/>
+        <ActionBar
+          onHandleFeedClick={this.handleFeedClick}
+          onHandlePlayClick={this.handlePlayClick}
+          onHandleCleanClick={this.handleCleanClick}
+        />
         <style jsx global>
           {`
             body {
