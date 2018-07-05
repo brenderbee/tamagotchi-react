@@ -37,6 +37,7 @@ class App extends React.Component {
   }
 
   componentWillUnmount(){
+    console.log("unmount");
     clearInterval(this.updateHunger);
     clearInterval(this.updatePlay);
     clearInterval(this.updateCleanliness);
@@ -89,6 +90,7 @@ class App extends React.Component {
           <Route exact path='/'
             render={()=>
               <Neutral
+                componentWillUnmount={this.componentWillUnmount}
                 hunger={this.state.masterHunger}
                 play={this.state.masterPlay}
                 cleanliness={this.state.masterCleanliness}
