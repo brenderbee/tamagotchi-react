@@ -11,14 +11,25 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      masterHunger: 70,
-      masterPlay: 50,
+      masterHunger: 100,
+      masterPlay: 100,
       masterCleanliness: 3,
       masterAge: 0
     };
     this.handleFeedClick = this.handleFeedClick.bind(this);
     this.handlePlayClick = this.handlePlayClick.bind(this);
     this.handleCleanClick = this.handleCleanClick.bind(this);
+  }
+
+  componentDidMount() {
+    setInterval(() =>
+      this.updateHunger(),
+      1000
+    );
+  }
+
+  componentWillUnmount(){
+    clearInterval(this.updateHunger);
   }
 
   handleFeedClick() {
@@ -43,6 +54,10 @@ class App extends React.Component {
     }
   }
 
+  updateHunger() {
+    this.setState({masterHunger: (this.state.masterHunger - 1)});
+  }
+
   render(){
     return (
       <div className="container">
@@ -53,7 +68,14 @@ class App extends React.Component {
           cleanliness={this.state.masterCleanliness}
         />
         <Switch>
-          <Route exact path='/' component={Neutral}/>} />
+          <Route exact path='/'
+            render={()=>
+              <Neutral
+                hunger={this.state.masterHunger}
+                play={this.state.masterPlay}
+                cleanliness={this.state.masterCleanliness}
+              />}
+          />
           <Route component={Error404} />
         </Switch>
         <ActionBar
