@@ -13,7 +13,7 @@ class App extends React.Component {
     this.state = {
       masterHunger: 100,
       masterPlay: 100,
-      masterCleanliness: 3,
+      masterCleanliness: 0,
       masterAge: 0
     };
     this.handleFeedClick = this.handleFeedClick.bind(this);
@@ -26,10 +26,20 @@ class App extends React.Component {
       this.updateHunger(),
       1000
     );
+    setInterval(() =>
+      this.updatePlay(),
+      1000
+    );
+    setInterval(() =>
+      this.updateCleanliness(),
+      10000
+    );
   }
 
   componentWillUnmount(){
     clearInterval(this.updateHunger);
+    clearInterval(this.updatePlay);
+    clearInterval(this.updateCleanliness);
   }
 
   handleFeedClick() {
@@ -56,6 +66,14 @@ class App extends React.Component {
 
   updateHunger() {
     this.setState({masterHunger: (this.state.masterHunger - 1)});
+  }
+
+  updatePlay() {
+    this.setState({masterPlay: (this.state.masterPlay - 1)});
+  }
+
+  updateCleanliness() {
+    this.setState({masterCleanliness: (this.state.masterCleanliness + 1)});
   }
 
   render(){
