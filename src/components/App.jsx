@@ -4,6 +4,7 @@ import ActionBar from './ActionBar';
 import Neutral from './Neutral';
 import StatusBar from './StatusBar';
 import { Switch, Route } from 'react-router-dom';
+import Age from './Age';
 
 class App extends React.Component {
 
@@ -12,7 +13,8 @@ class App extends React.Component {
     this.state = {
       masterHunger: 70,
       masterPlay: 50,
-      masterCleanliness: 3
+      masterCleanliness: 3,
+      masterAge: 0
     };
     this.handleFeedClick = this.handleFeedClick.bind(this);
     this.handlePlayClick = this.handlePlayClick.bind(this);
@@ -44,6 +46,7 @@ class App extends React.Component {
   render(){
     return (
       <div className="container">
+        <Age age={this.state.masterAge} />
         <StatusBar
           hunger={this.state.masterHunger}
           play={this.state.masterPlay}
