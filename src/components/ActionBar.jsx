@@ -10,6 +10,12 @@ function ActionBar(){
         {`
           button {
             margin-right: 10px;
+            transition: background 0.3s ease-in-out;
+          }
+
+          button:hover {
+            cursor: pointer;
+            background: blue;
           }
         `}
       </style>
